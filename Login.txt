@@ -1,0 +1,7 @@
+URL
+http://2016sv.icfpcontest.org/login
+
+Team ID
+62
+Password
+gdpAWRbnVT5q
