@@ -52,12 +52,14 @@ class ProblemAPI
     get_something(BLOB+hash).to_s
   end
 
-  def submit_solution(file)
+  def submit_solution(file, problem_id = nil)
     sleep 1
     p SUBMIT
+    problem_id ||= File.basename(file,'.*')
+    p "problem id #{problem_id}"
     x = RestClient.post(
       SUBMIT,
-      {:problem_id => 1,
+      {:problem_id => problem_id,
        :solution_spec => File.read(file)
       },
       :'X-API-key' => API_KEY
