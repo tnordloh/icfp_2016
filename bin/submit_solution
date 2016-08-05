@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+file = ARGV[0]
+require_relative '../lib/problem_api'
+p file
+raise "no file " unless file
+
+p = ProblemAPI.new
+
+p p.next_hour
+p.submit_solution(file)

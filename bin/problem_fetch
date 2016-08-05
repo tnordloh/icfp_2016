@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/problem_api'
+p = ProblemAPI.new
+
+p.problems.each do |problem| 
+  id = problem["problem_id"] 
+
+  p problem
+  File.write("./problems/" + id.to_s + ".txt",p.problem_spec(problem["problem_spec_hash"]))
+end
