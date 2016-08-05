@@ -168,29 +168,29 @@
   problem_id: 37
   solution_spec_hash: 237171feda221f1dcf3b9c3f092c459eb5f41733
 38:
-  solution_size: 45
+  solution_size: 89
   ok: true
-  resemblance: 0.789473
+  resemblance: 1.0
   problem_id: 38
-  solution_spec_hash: 50e14cd3f04b943709b5194dac97c97a89afe532
+  solution_spec_hash: 900ebef361aeeb6136867e98c905d9b643cd518a
 39:
-  solution_size: 51
+  solution_size: 82
   ok: true
-  resemblance: 0.732673
+  resemblance: 1.0
   problem_id: 39
-  solution_spec_hash: ba7e6246f934a46f5685a499f24ac4940931730c
+  solution_spec_hash: 083c441f05be782869fd45e04702fb67c3671d41
 40:
-  solution_size: 31
+  solution_size: 94
   ok: true
-  resemblance: 0.777777
+  resemblance: 1.0
   problem_id: 40
-  solution_spec_hash: 8e2a36caafaa796c3c241ad6816706742cf2531f
+  solution_spec_hash: 80f9ba4a13181b1ae6d5be8f1a598d2ef1dba79f
 41:
-  solution_size: 47
+  solution_size: 89
   ok: true
-  resemblance: 0.75
+  resemblance: 1.0
   problem_id: 41
-  solution_spec_hash: 94c88f2263928b21ce4a327310fa11673762d277
+  solution_spec_hash: 5506e94ac86f2fa806053431757bf8a5cc299f89
 42:
   solution_size: 77
   ok: true
