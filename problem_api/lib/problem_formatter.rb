@@ -1,4 +1,5 @@
 require 'json'
+require_relative 'rationalizer'
 
 class ProblemFormatter
   def initialize(problem_number)
@@ -30,13 +31,21 @@ class ProblemFormatter
       vertices_amount = lines_array.shift.to_i
       vertices = lines_array.shift(vertices_amount)
       polygons << { "negative" => false,
-                    "vertices" => vertices
+                    "vertices" => vertices_formatter(vertices)
       }
     end
-    polygons
   end
 
   def build_lines(array)
-    array[1..-1].map { |string| string.split(' ').map { |xy| xy.split(',')} }
+    array[1..-1].map do |string|
+      string.split(' ').map { |xy| xy.split(',')}
+    end.map { |group| group.map {|pair| pair.map { |candidate| Rationalizer.new(candidate).run }} }
+  end
+
+  def vertices_formatter(vertices)
+    vertices.map do |pair| 
+      pair.split(',')
+          .map { |candidate| Rationalizer.new(candidate).run }
+    end
   end
 end
