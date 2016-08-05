@@ -48,11 +48,11 @@
   problem_id: 11
   solution_spec_hash: c6e30f2db3ece09623384c280bf14fe8ef50b91a
 12:
-  solution_size: 61
+  solution_size: 63
   ok: true
-  resemblance: 0.790887
+  resemblance: 1.0
   problem_id: 12
-  solution_spec_hash: e76ca69e6573ba5626b0917914b04f915cb29ab3
+  solution_spec_hash: 27ca2a41046f30be60b213f32fc7a0b0c5d8d82b
 13:
   solution_size: 75
   ok: true
