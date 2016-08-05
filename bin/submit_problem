@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/problem_api'
+require_relative "../solver/lib/database"
+
+file = ARGV[0] or abort "USAGE:  #{$PROGRAM_NAME} FILE"
+p file
+
+api = ProblemAPI.new
+db = Database.new
+
+response = api.submit_problem(file)
+#db.record_if_better(response["problem_id"], response)
+p response

@@ -56,7 +56,7 @@ class ProblemAPI
     sleep 1
      x = RestClient.post(
       SUBMIT,
-      {:publish_time => next_hour,
+      {:publish_time => 1470441600,
        :solution_spec => File.read(file)
       },
       :'X-API-key' => API_KEY
