@@ -23,13 +23,33 @@ class SolutionFormatter
   end
 
   def build_polygons(lines_array)
-    coordinates  = grab_chunk(lines_array)
-    polygon_list = lines_array.drop(lines_array[0].to_i + 1)
-    moves        = grab_chunk(polygon_list)
-    p coordinates
-    p lines_array
-    p polygon_list
-    p moves
+    coordinates  = grab_chunk(lines_array).map do |pair|
+      pair.split(',').map do |num|
+        Rationalizer.new(num).run
+      end
+    end
+    remaining_list = lines_array.drop(lines_array[0].to_i + 1)
+    moves          = grab_chunk(remaining_list)
+    moves.map do |numbers_string|
+        numbers_string
+        .split(' ')
+        .drop(1)
+        .map(&:to_i)
+        .map { |int| build_step(int, coordinates) }
+    end
+  end
+
+  def build_step(int, coords)
+    {
+      'x' => {
+        'numerator' => coords[int][0][0],
+        'denomenator' => coords[int][0][1]
+      },
+      'y' => {
+        'numerator' => coords[int][1][0],
+        'denomenator' => coords[int][1][1]
+      }
+    }
   end
 
   def grab_chunk(array)

@@ -26,7 +26,8 @@ class AppTest < Minitest::Test
   def test_solution_show_with_params
     get '/solutions/1'
     assert last_response.ok?
-    assert_match(/facet/, last_response.body)
+    assert_match(/numerator/,   last_response.body)
+    assert_match(/denomenator/, last_response.body)
   end
 
   def test_show_with_params
@@ -35,7 +36,7 @@ class AppTest < Minitest::Test
     assert_match(/negative/, last_response.body)
     assert_match(/vertices/, last_response.body)
     assert_match(/polygons/, last_response.body)
-    assert_match(/lines/, last_response.body)
+    assert_match(/lines/,    last_response.body)
   end
 
   def test_additional_show_with_params
@@ -44,6 +45,6 @@ class AppTest < Minitest::Test
     assert_match(/negative/, last_response.body)
     assert_match(/vertices/, last_response.body)
     assert_match(/polygons/, last_response.body)
-    assert_match(/lines/, last_response.body)
+    assert_match(/lines/,    last_response.body)
   end
 end
