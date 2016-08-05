@@ -17,14 +17,14 @@ class RationalizerTest < Minitest::Unit::TestCase
   end
 
   def test_it_formats_a_rational_number_string
-    assert_equal ['1', '1'], @rationalizer.format('1/1')
+    assert_equal [1, 1], @rationalizer.format('1/1')
   end
 
   def test_it_formats_a_whole_number_string
-    assert_equal ['1', '1'], @rationalizer.rationalize('1')
+    assert_equal [1, 1], @rationalizer.rationalize('1')
   end
 
   def test_it_runs_the_candidate
-    assert_equal ['1', '1'], @rationalizer.run
+    assert_equal [1, 1], @rationalizer.run
   end
 end

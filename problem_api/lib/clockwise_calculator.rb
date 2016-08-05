@@ -8,6 +8,7 @@ class ClockwiseCalculator
   def run
     acc = []
     @vertices_array.length.times do
+      @vertices
     end
     false
   end
