@@ -1,0 +1,7 @@
+<body>
+  <ul>
+    <% @filenames.each do |file| %>
+      <li><a href=<%= url("/#{file}") %>><%= file %></a></li>
+    <% end %>
+  </ul>
+</body>

@@ -2,9 +2,14 @@ require 'sinatra'
 require_relative 'lib/problem_formatter'
 
 get '/' do
-  Dir.entries(File.expand_path('../../problems/', __FILE__))
+  @filenames = Dir.entries(File.expand_path('../../problems/', __FILE__))
+    .select { |fn| fn.match(/\A[0-9]+\.txt\z/)}
+    .map { |fn| fn.gsub(/\.txt/, '') }
+    .sort_by { |file| file.to_i }
+  erb :index
 end
 
 get '/:id' do
-  ProblemFormatter.new(params['id']).json
+  @model = ProblemFormatter.new(params['id']).json
+  erb :show
 end
