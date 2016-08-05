@@ -14,10 +14,10 @@ class Rationalizer
   end
 
   def format(num_string)
-    num_string.split(/\//)
+    num_string.split(/\//).map { |num_s| num_s.to_i }
   end
 
   def rationalize(num_string)
-    [num_string, '1']
+    [num_string.to_i, 1]
   end
 end
