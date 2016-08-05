@@ -31,7 +31,7 @@ class ProblemFormatter
     count.times do
       vertices_amount = lines_array.shift.to_i
       vertices = lines_array.shift(vertices_amount)
-      polygons << { "negative" => clockwise?(vertices),
+      polygons << { "negative" => ClockwiseCalculator.new(vertices).clockwise?,
                     "vertices" => vertices_formatter(vertices)
       }
     end
@@ -41,11 +41,10 @@ class ProblemFormatter
   def build_lines(array)
     array[1..-1].map do |string|
       string.split(' ').map { |xy| xy.split(',')}
-    end.map { |group| group.map {|pair| pair.map { |candidate| Rationalizer.new(candidate).run }} }
-  end
-
-  def clockwise?(vertices)
-    ClockwiseCalculator.new(vertices).run
+    end
+      .map do |group|
+      group.map {|pair| pair.map { |candidate| Rationalizer.new(candidate).run }}
+    end
   end
 
   def vertices_formatter(vertices)
