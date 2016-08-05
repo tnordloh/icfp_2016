@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Foldiviz</title>
+        <script type="text/javascript" src="solutionvisualizer.js" charset="utf-8"></script>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+         var model = <%= @model %>;
+         var app = Elm.SolutionVisualizer.fullscreen(model);
+        </script>
+    </body>
+
+</html>
