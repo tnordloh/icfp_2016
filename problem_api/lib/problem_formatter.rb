@@ -1,12 +1,7 @@
 require 'json'
 class ProblemFormatter
   def initialize(problem_number)
-    lines_array = File.read("../../problems/#{problem_number}.txt").split(/\n/)
-    polygons_count = lines_array.shift.to_i
-    @hash = {
-      "polygons" => build_polygons(polygons_count, lines_array),
-      "lines"    => build_lines(lines_array)
-    }
+    build_hash(problem_number)
   end
 
   def json
@@ -15,7 +10,16 @@ class ProblemFormatter
 
   private
 
-  def build_polygons(count, lines_array)
+  def build_hash(filename)
+    lines_array = File.read("../../problems/#{filename}.txt").split(/\n/)
+    @hash = {
+      "polygons" => build_polygons(lines_array),
+      "lines"    => build_lines(lines_array)
+    }
+  end
+
+  def build_polygons(lines_array)
+    count = lines_array.shift.to_i
     polygons = []
     count.times do
       vertices_amount = lines_array.shift.to_i
@@ -31,3 +35,5 @@ class ProblemFormatter
     array[1..-1].map { |string| string.split(' ').map { |xy| xy.split(',')} }
   end
 end
+
+puts ProblemFormatter.new(100).json
