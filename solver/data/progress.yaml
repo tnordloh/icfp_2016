@@ -42,11 +42,11 @@
   problem_id: 101
   solution_spec_hash: b88d50f1653aa872e641d55096f9c38bb6f2b0d8
 11:
-  solution_size: 63
+  solution_size: 60
   ok: true
-  resemblance: 0.737242
+  resemblance: 1.0
   problem_id: 11
-  solution_spec_hash: ba2ba5ee0bb6a63231236098fec558dca8f1a561
+  solution_spec_hash: c6e30f2db3ece09623384c280bf14fe8ef50b91a
 12:
   solution_size: 61
   ok: true
