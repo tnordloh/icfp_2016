@@ -8,6 +8,7 @@ class ProblemAPI
   SNAPSHOT_LIST='http://2016sv.icfpcontest.org/api/snapshot/list'
   BLOB='http://2016sv.icfpcontest.org/api/blob/'
   SUBMIT='http://2016sv.icfpcontest.org/api/solution/submit'
+  SUBMIT_PROBLEM='http://2016sv.icfpcontest.org/api/problem/submit'
 
   test_url='http://2016sv.icfpcontest.org/api/hello'
   base_url='http://2016sv.icfpcontest.org/api'
@@ -26,7 +27,6 @@ class ProblemAPI
 
   def get_something(url)
     sleep 1
-    p url
     RestClient.get(
       url,
       :'X-API-key' => API_KEY
@@ -52,11 +52,21 @@ class ProblemAPI
     get_something(BLOB+hash).to_s
   end
 
+  def submit_problem(file)
+    sleep 1
+     x = RestClient.post(
+      SUBMIT,
+      {:publish_time => next_hour,
+       :solution_spec => File.read(file)
+      },
+      :'X-API-key' => API_KEY
+    )
+    JSON.parse(x)
+  end
+
   def submit_solution(file, problem_id = nil)
     sleep 1
-    p SUBMIT
     problem_id ||= File.basename(file,'.*')
-    p "problem id #{problem_id}"
     x = RestClient.post(
       SUBMIT,
       {:problem_id => problem_id,
@@ -64,7 +74,7 @@ class ProblemAPI
       },
       :'X-API-key' => API_KEY
     )
-    p JSON.parse(x)
+    JSON.parse(x)
   end
   
   def next_hour
