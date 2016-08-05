@@ -1,7 +1,7 @@
 require 'sinatra'
 
 get '/' do
-  'Hello world'
+  'Hello, World!'
 end
 
 get '/:id' do
