@@ -8,4 +8,4 @@ raise "no file " unless file
 p = ProblemAPI.new
 
 p p.next_hour
-p.submit_solution(file)
+p p.submit_solution(file)
