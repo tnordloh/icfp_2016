@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/problem_api'
+
+file = ARGV[0] or abort "USAGE:  #{$PROGRAM_NAME} FILE"
+p file
+
+api = ProblemAPI.new
+
+response = api.submit_problem(file)
+p response
