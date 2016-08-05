@@ -1,0 +1,9 @@
+require 'sinatra'
+
+get '/' do
+  'Hello, World!'
+end
+
+get '/:id' do
+  "Hello #{params['id']}!"
+end
