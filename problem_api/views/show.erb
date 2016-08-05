@@ -1,5 +1,17 @@
-<body>
-  <script type="text/javascript">
-    var model = <%= @model %>;
-  </script>
-</body>
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Foldiviz</title>
+        <script type="text/javascript" src="problemvisualizer.js" charset="utf-8"></script>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+         var model = <%= @model %>;
+         var app = Elm.ProblemVisualizer.fullscreen(model);
+        </script>
+    </body>
+
+</html>
