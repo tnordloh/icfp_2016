@@ -11,7 +11,9 @@ class ProblemFormatter
   private
 
   def build_hash(filename)
-    lines_array = File.read("../../problems/#{filename}.txt").split(/\n/)
+    lines_array = File.read(
+      File.expand_path("../../../problems/#{filename}.txt", __FILE__)
+    ).split(/\n/)
     @hash = {
       "polygons" => build_polygons(lines_array),
       "lines"    => build_lines(lines_array)
@@ -35,5 +37,7 @@ class ProblemFormatter
     array[1..-1].map { |string| string.split(' ').map { |xy| xy.split(',')} }
   end
 end
+
+puts __FILE__
 
 puts ProblemFormatter.new(100).json
