@@ -1,4 +1,5 @@
 require 'sinatra'
+require_relative 'lib/problem_formatter'
 
 get '/' do
   'Hello, World!'

@@ -1,20 +1,22 @@
 require 'json'
 class ProblemFormatter
   def initialize(problem_number)
-    build_hash(problem_number)
+    @filename = "#{problem_number}.txt"
   end
 
+  attr_reader :filename
+
   def json
-    @hash.to_json
+    @json ||= build_hash(filename).to_json
   end
 
   private
 
   def build_hash(filename)
     lines_array = File.read(
-      File.expand_path("../../../problems/#{filename}.txt", __FILE__)
+      File.expand_path("../../../problems/#{filename}", __FILE__)
     ).split(/\n/)
-    @hash = {
+    {
       "polygons" => build_polygons(lines_array),
       "lines"    => build_lines(lines_array)
     }
@@ -37,7 +39,3 @@ class ProblemFormatter
     array[1..-1].map { |string| string.split(' ').map { |xy| xy.split(',')} }
   end
 end
-
-puts __FILE__
-
-puts ProblemFormatter.new(100).json
