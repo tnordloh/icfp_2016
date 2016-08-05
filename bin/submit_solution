@@ -1,11 +1,14 @@
 #!/usr/bin/env ruby
 
-file = ARGV[0]
 require_relative '../lib/problem_api'
+require_relative "../solver/lib/database"
+
+file = ARGV[0] or abort "USAGE:  #{$PROGRAM_NAME} FILE"
 p file
-raise "no file " unless file
 
-p = ProblemAPI.new
+api = ProblemAPI.new
+db = Database.new
 
-p p.next_hour
-p.submit_solution(file)
+response = api.submit_solution(file)
+db.record_if_better(response["problem_id"], response)
+p response

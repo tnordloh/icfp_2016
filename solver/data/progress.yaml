@@ -42,17 +42,17 @@
   problem_id: 101
   solution_spec_hash: b88d50f1653aa872e641d55096f9c38bb6f2b0d8
 11:
+  solution_size: 60
+  ok: true
+  resemblance: 1.0
+  problem_id: 11
+  solution_spec_hash: c6e30f2db3ece09623384c280bf14fe8ef50b91a
+12:
   solution_size: 63
   ok: true
-  resemblance: 0.737242
-  problem_id: 11
-  solution_spec_hash: ba2ba5ee0bb6a63231236098fec558dca8f1a561
-12:
-  solution_size: 61
-  ok: true
-  resemblance: 0.790887
+  resemblance: 1.0
   problem_id: 12
-  solution_spec_hash: e76ca69e6573ba5626b0917914b04f915cb29ab3
+  solution_spec_hash: 27ca2a41046f30be60b213f32fc7a0b0c5d8d82b
 13:
   solution_size: 75
   ok: true
@@ -438,11 +438,11 @@
   problem_id: 79
   solution_spec_hash: 75b0a3b04cbec5693e29dd0c7466211643e212ee
 8:
-  solution_size: 51
+  solution_size: 100
   ok: true
-  resemblance: 0.25
+  resemblance: 1.0
   problem_id: 8
-  solution_spec_hash: b9d745a01285d192476ae3a9c79505465e94fd77
+  solution_spec_hash: e724ddf8c9a03b25115ff55fe475fc7ce3092ced
 80:
   solution_size: 185
   ok: true
@@ -558,11 +558,11 @@
   problem_id: 97
   solution_spec_hash: 1ba60dede7fa0df6478723a36a3261089e3c5fc4
 98:
-  solution_size: 39
+  solution_size: 176
   ok: true
-  resemblance: 0.375
+  resemblance: 1.0
   problem_id: 98
-  solution_spec_hash: 8590af31662ba7d3a5ce033b9d92fa6fcf1aac30
+  solution_spec_hash: 984e83ec8d1e39394e8693641ac6c87b0faac0aa
 99:
   solution_size: 119
   ok: true
