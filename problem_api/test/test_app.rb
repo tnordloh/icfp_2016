@@ -13,4 +13,10 @@ class MyTest < Minitest::Unit::TestCase
     assert last_response.ok?
     assert_equal "Hello, World!", last_response.body
   end
+
+  def test_get_with_params
+    get '/1'
+    assert last_response.ok?
+    assert_equal "Hello 1!", last_response.body
+  end
 end
