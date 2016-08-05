@@ -1,5 +1,6 @@
 require 'json'
 require_relative 'rationalizer'
+require_relative 'clockwise_calculator'
 
 class ProblemFormatter
   def initialize(problem_number)
@@ -30,7 +31,7 @@ class ProblemFormatter
     count.times do
       vertices_amount = lines_array.shift.to_i
       vertices = lines_array.shift(vertices_amount)
-      polygons << { "negative" => false,
+      polygons << { "negative" => clockwise?(vertices),
                     "vertices" => vertices_formatter(vertices)
       }
     end
@@ -41,6 +42,10 @@ class ProblemFormatter
     array[1..-1].map do |string|
       string.split(' ').map { |xy| xy.split(',')}
     end.map { |group| group.map {|pair| pair.map { |candidate| Rationalizer.new(candidate).run }} }
+  end
+
+  def clockwise?(vertices)
+    ClockwiseCalculator.new(vertices).run
   end
 
   def vertices_formatter(vertices)
