@@ -11,9 +11,22 @@ class AppTest < Minitest::Test
   def test_index
     get '/'
     assert last_response.ok?
-    (1..100).each do |num|
+    (1..101).each do |num|
       assert_match(/#{num}/, last_response.body)
     end
+  end
+
+  def test_solutions
+    get '/solutions'
+    assert last_response.ok?
+    assert_match(/100/, last_response.body)
+    assert_match(/56/,  last_response.body)
+  end
+
+  def test_solution_show_with_params
+    get '/solutions/1'
+    assert last_response.ok?
+    assert_match(/facet/, last_response.body)
   end
 
   def test_show_with_params
@@ -26,7 +39,7 @@ class AppTest < Minitest::Test
   end
 
   def test_additional_show_with_params
-    get '/100'
+    get '/101'
     assert last_response.ok?
     assert_match(/negative/, last_response.body)
     assert_match(/vertices/, last_response.body)
