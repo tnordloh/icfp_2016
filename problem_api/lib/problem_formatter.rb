@@ -34,6 +34,7 @@ class ProblemFormatter
                     "vertices" => vertices_formatter(vertices)
       }
     end
+    polygons
   end
 
   def build_lines(array)
