@@ -1,7 +1,7 @@
 require File.expand_path '../test_helper.rb', __FILE__
 require 'json'
 
-class ProblemFormatterTest < Minitest::Unit::TestCase
+class ProblemFormatterTest < Minitest::Test
 
   def setup
     @formatter = ProblemFormatter.new(1)

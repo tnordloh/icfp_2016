@@ -1,7 +1,7 @@
 require File.expand_path '../test_helper.rb', __FILE__
 require_relative '../lib/rationalizer'
 
-class RationalizerTest < Minitest::Unit::TestCase
+class RationalizerTest < Minitest::Test
 
   def setup
     @rationalizer = Rationalizer.new('1')

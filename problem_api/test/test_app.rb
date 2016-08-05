@@ -1,6 +1,6 @@
 require File.expand_path '../test_helper.rb', __FILE__
 
-class AppTest < Minitest::Unit::TestCase
+class AppTest < Minitest::Test
 
   include Rack::Test::Methods
 
