@@ -1,4 +1,5 @@
 require 'json'
+
 class ProblemFormatter
   def initialize(problem_number)
     @filename = "#{problem_number}.txt"
