@@ -57,9 +57,13 @@ toCoord : Point -> String
 toCoord {x, y} =
   String.join "" [ rationalToString x
                  , ","
-                 , rationalToString y
+                 , rationalToStringy y 200
                  ]
 
 rationalToString : Rational -> String
 rationalToString { numerator, denominator } =
   toString ((Basics.toFloat numerator / Basics.toFloat denominator) * 100)
+
+rationalToStringy : Rational -> Float -> String
+rationalToStringy { numerator, denominator } offset =
+  toString (offset - ((Basics.toFloat numerator / Basics.toFloat denominator) * 100))

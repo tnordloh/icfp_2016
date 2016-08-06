@@ -7755,21 +7755,27 @@ var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$a
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
 
-var _user$project$SolutionVisualizer$rationalToString = function (_p0) {
-	var _p1 = _p0;
-	return _elm_lang$core$Basics$toString(
-		(_elm_lang$core$Basics$toFloat(_p1.numerator) / _elm_lang$core$Basics$toFloat(_p1.denominator)) * 100);
-};
-var _user$project$SolutionVisualizer$toCoord = function (_p2) {
+var _user$project$SolutionVisualizer$rationalToStringy = F2(
+	function (_p0, offset) {
+		var _p1 = _p0;
+		return _elm_lang$core$Basics$toString(
+			offset - ((_elm_lang$core$Basics$toFloat(_p1.numerator) / _elm_lang$core$Basics$toFloat(_p1.denominator)) * 100));
+	});
+var _user$project$SolutionVisualizer$rationalToString = function (_p2) {
 	var _p3 = _p2;
+	return _elm_lang$core$Basics$toString(
+		(_elm_lang$core$Basics$toFloat(_p3.numerator) / _elm_lang$core$Basics$toFloat(_p3.denominator)) * 100);
+};
+var _user$project$SolutionVisualizer$toCoord = function (_p4) {
+	var _p5 = _p4;
 	return A2(
 		_elm_lang$core$String$join,
 		'',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$SolutionVisualizer$rationalToString(_p3.x),
+				_user$project$SolutionVisualizer$rationalToString(_p5.x),
 				',',
-				_user$project$SolutionVisualizer$rationalToString(_p3.y)
+				A2(_user$project$SolutionVisualizer$rationalToStringy, _p5.y, 200)
 			]));
 };
 var _user$project$SolutionVisualizer$toSvgString = function (polygon) {
@@ -7823,7 +7829,7 @@ var _user$project$SolutionVisualizer$main = {
 		{
 			init: _user$project$SolutionVisualizer$init,
 			update: _user$project$SolutionVisualizer$update,
-			subscriptions: function (_p4) {
+			subscriptions: function (_p6) {
 				return _elm_lang$core$Platform_Sub$none;
 			},
 			view: _user$project$SolutionVisualizer$view
