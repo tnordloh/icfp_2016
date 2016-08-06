@@ -2,7 +2,7 @@ require 'rest-client'
 require 'json'
 require 'date'
 
-class ProblemAPI 
+class ProblemAPI
 
   API_KEY='62-08715aadce013af728b067ea4684dd29'
   SNAPSHOT_LIST='http://2016sv.icfpcontest.org/api/snapshot/list'
@@ -77,12 +77,10 @@ class ProblemAPI
     )
     JSON.parse(x)
   end
-  
+
   def next_hour
     t = Time.new + (60 * 60)
     Time.new(t.year,t.month,t.day,t.hour).to_i
   end
 
 end
-
-
