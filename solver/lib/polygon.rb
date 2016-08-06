@@ -7,6 +7,18 @@ class Polygon
 
   attr_reader :vertices
 
+  def clockwise?
+    (vertices + [vertices.first])
+      .each_cons(2)
+      .inject(0) { |curve, (start, finish)|
+        curve + ((finish.x - start.x) * (finish.y + start.y))
+      } >= 0
+  end
+
+  def counter_clockwise?
+    !clockwise?
+  end
+
   def centroid
     vertices.inject(:+) / vertices.size
   end

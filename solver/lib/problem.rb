@@ -1,3 +1,4 @@
+require_relative "figure"
 require_relative "polygon"
 require_relative "solution"
 
@@ -13,10 +14,9 @@ class Problem
   private     :number, :polygons
 
   def solve
-    return if polygons.size != 1
-
     paper = Polygon.new([[0, 0], [1, 0], [1, 1], [0, 1]])
-    solution = paper.overlay(polygons.first)
+    figure = Figure.new(polygons.select(&:counter_clockwise?))
+    solution = paper.overlay(figure)
     Solution.new(number, paper, solution).write
   end
 
