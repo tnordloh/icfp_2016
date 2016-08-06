@@ -20,7 +20,11 @@ class Solver
     files.each do |path|
       number = File.basename(path, ".txt").to_i
 
-      next if db.best_score(number) == 1.0
+      next if db.best_score(number) > 0.0
+      next if number < 101
+      next if number == 750
+      next if number == 904
+      next if number == 1097
 
       problem = Problem.new(number, path)
       solution = problem.solve
