@@ -1229,3 +1229,9 @@
   resemblance: 0.364341
   problem_id: 1085
   solution_spec_hash: b34a0f6f992c9252365342abd60e414b231c86aa
+1097:
+  solution_size: 49
+  ok: true
+  resemblance: 0.003291
+  problem_id: 1097
+  solution_spec_hash: bda3d2dd26179c45a726a1fdb7cdd4a70ad7cc06

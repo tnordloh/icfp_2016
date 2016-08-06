@@ -7830,6 +7830,14 @@ var _user$project$ProblemVisualizer$toSvgString = F2(
 				},
 				points));
 	});
+var _user$project$ProblemVisualizer$color = function (negative) {
+	var _p14 = negative;
+	if (_p14 === true) {
+		return 'white';
+	} else {
+		return 'aquamarine';
+	}
+};
 var _user$project$ProblemVisualizer$drawPolygon = F2(
 	function (polygon, minxy) {
 		return A2(
@@ -7838,7 +7846,8 @@ var _user$project$ProblemVisualizer$drawPolygon = F2(
 				[
 					_elm_lang$svg$Svg_Attributes$points(
 					A2(_user$project$ProblemVisualizer$toSvgString, polygon.vertices, minxy)),
-					_elm_lang$svg$Svg_Attributes$fill('aquamarine')
+					_elm_lang$svg$Svg_Attributes$fill(
+					_user$project$ProblemVisualizer$color(polygon.negative))
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[]));
@@ -7851,9 +7860,9 @@ var _user$project$ProblemVisualizer$update = F2(
 			_elm_lang$core$Native_List.fromArray(
 				[]));
 	});
-var _user$project$ProblemVisualizer$convert = function (_p14) {
-	var _p15 = _p14;
-	return _elm_lang$core$Basics$toFloat(_p15._0) / _elm_lang$core$Basics$toFloat(_p15._1);
+var _user$project$ProblemVisualizer$convert = function (_p15) {
+	var _p16 = _p15;
+	return _elm_lang$core$Basics$toFloat(_p16._0) / _elm_lang$core$Basics$toFloat(_p16._1);
 };
 var _user$project$ProblemVisualizer$minCoords = function (polygons) {
 	var miny = _elm_lang$core$List$minimum(
@@ -7926,7 +7935,7 @@ var _user$project$ProblemVisualizer$main = {
 		{
 			init: _user$project$ProblemVisualizer$init,
 			update: _user$project$ProblemVisualizer$update,
-			subscriptions: function (_p16) {
+			subscriptions: function (_p17) {
 				return _elm_lang$core$Platform_Sub$none;
 			},
 			view: _user$project$ProblemVisualizer$view

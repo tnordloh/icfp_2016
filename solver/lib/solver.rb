@@ -21,7 +21,7 @@ class Solver
       number = File.basename(path, ".txt").to_i
 
       next if db.best_score(number) == 1.0
-      next if number < 101  # FIXME
+      next if number < 1097  # FIXME
 
       problem = Problem.new(number, path)
       solution = problem.solve

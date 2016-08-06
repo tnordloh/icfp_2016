@@ -68,8 +68,14 @@ update message model = model ! []
 
 drawPolygon : Polygon -> (Float, Float) -> Svg a
 drawPolygon polygon minxy =
-    Svg.polygon [ points (toSvgString polygon.vertices minxy), fill "aquamarine" ] [ ]
+    Svg.polygon [ points (toSvgString polygon.vertices minxy), fill (color polygon.negative) ] [ ]
 
+
+color : Bool -> String
+color negative =
+    case negative of
+        True -> "white"
+        False -> "aquamarine"
 
 toSvgString : List Point -> (Float, Float) -> String
 toSvgString points minxy =
