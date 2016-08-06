@@ -9,17 +9,23 @@ class Rotator
     point.y -= cy.to_f
 
     # rotate point
-    xnew = (point.x * c - point.y * s).round(6)
-    ynew = (point.x * s + point.y * c).round(6)
+    xnew = (point.x * c - point.y * s)
+    ynew = (point.x * s + point.y * c)
 
     # translate back
     point.x = (xnew + cx.to_f).to_r
     point.y = (ynew + cy.to_f).to_r
 
-    p point
+    puts "#{point.x},#{point.y}"
   end
 end
 
-point = Struct.new(:x, :y)
-p = point.new(1.0, 0.0)
-Rotator.rotate(0.0, 0.0, 90, p)
+Point = Struct.new(:x, :y)
+cx = ARGV.shift.to_f
+cy = ARGV.shift.to_f
+angle = ARGV.shift.to_f
+p = Point.new
+p.x = ARGV.shift.to_f
+p.y = ARGV.shift.to_f
+
+Rotator.rotate(cx, cy, angle, p)
