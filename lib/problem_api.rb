@@ -54,9 +54,10 @@ class ProblemAPI
 
   def submit_problem(file)
     sleep 1
+    time = File.basename(file,'.txt')
      x = RestClient.post(
       SUBMIT_PROBLEM,
-      {:publish_time => 1470441600,
+      {:publish_time => time,
        :solution_spec => File.read(file)
       },
       :'X-API-key' => API_KEY
