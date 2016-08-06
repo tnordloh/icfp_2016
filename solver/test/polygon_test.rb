@@ -21,4 +21,13 @@ describe Polygon do
     destination = Polygon.new([[1, 1], [2, 1], [1, 2]])
     source.overlay(destination).must_equal(destination)
   end
+
+  it "knows if a polygon is clockwise" do
+    counter_clockwise = Polygon.new([[0, 0], [1, 0], [1, 1], [0, 1]])
+    clockwise = Polygon.new([[0, 0], [0, 1], [1, 1], [1, 0]])
+    counter_clockwise.clockwise?.must_equal(false)
+    counter_clockwise.counter_clockwise?.must_equal(true)
+    clockwise.clockwise?.must_equal(true)
+    clockwise.counter_clockwise?.must_equal(false)
+  end
 end
