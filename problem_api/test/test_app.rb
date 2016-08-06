@@ -27,7 +27,7 @@ class AppTest < Minitest::Test
     get '/solutions/1'
     assert last_response.ok?
     assert_match(/numerator/,   last_response.body)
-    assert_match(/denomenator/, last_response.body)
+    assert_match(/denominator/, last_response.body)
   end
 
   def test_show_with_params

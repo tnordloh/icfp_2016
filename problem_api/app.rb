@@ -12,7 +12,7 @@ end
 
 get '/solutions' do
   @filenames = DirBuilder.run('solutions')
-  erb :index
+  erb :solutions_index
 end
 
  get '/solutions/:id' do
