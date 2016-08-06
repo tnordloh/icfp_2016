@@ -8,7 +8,10 @@ class Solver
   end
 
   def initialize
-    @files = Dir.glob(File.join(__dir__, *%w[.. .. problems *.txt]))
+    @files =
+      Dir
+        .glob(File.join(__dir__, *%w[.. .. problems *.txt]))
+        .select { |f| f =~ /\b\d+\.txt\z/ }
     @api = ProblemAPI.new
     @db = Database.new
   end
@@ -21,17 +24,20 @@ class Solver
       number = File.basename(path, ".txt").to_i
 
       next if db.best_score(number) == 1.0
-      next if number < 1097  # FIXME
 
       problem = Problem.new(number, path)
       solution = problem.solve
 
       if solution
-        response = api.submit_solution(solution)
-        db.record_if_better(number, response)
+        begin
+          response = api.submit_solution(solution)
+          db.record_if_better(number, response)
 
-        puts
-        p response
+          puts
+          p response
+        rescue RestClient::BadRequest
+          puts "skipping tricking problem"
+        end
       end
     end
   end

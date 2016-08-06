@@ -1,13 +1,7 @@
 class Point
   def initialize(x, y)
-    if x.to_s.size > 15 || y.to_s.size > 15
-      simplified = Rational(x.to_i / y.to_f)
-      @x = simplified.numerator
-      @y = simplified.denominator
-    else
-      @x = x.to_r
-      @y = y.to_r
-    end
+    @x = x.to_r
+    @y = y.to_r
   end
 
   attr_reader :x, :y
