@@ -1211,3 +1211,21 @@
   resemblance: 0.021508
   problem_id: 907
   solution_spec_hash: 42c1f8006537ccf50c2ea6e08514da00605bd572
+1021:
+  solution_size: 79
+  ok: true
+  resemblance: 0.118055
+  problem_id: 1021
+  solution_spec_hash: e8e3f0d87ab214539865b6efa1eb8c6db68c08cd
+1073:
+  solution_size: 89
+  ok: true
+  resemblance: 0.447973
+  problem_id: 1073
+  solution_spec_hash: 45c42a7b96735d3f8425640d152950ebbc58e18d
+1085:
+  solution_size: 51
+  ok: true
+  resemblance: 0.364341
+  problem_id: 1085
+  solution_spec_hash: b34a0f6f992c9252365342abd60e414b231c86aa
