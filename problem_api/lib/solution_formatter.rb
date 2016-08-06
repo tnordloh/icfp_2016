@@ -43,11 +43,11 @@ class SolutionFormatter
     {
       'x' => {
         'numerator' => coords[int][0][0],
-        'denomenator' => coords[int][0][1]
+        'denominator' => coords[int][0][1]
       },
       'y' => {
         'numerator' => coords[int][1][0],
-        'denomenator' => coords[int][1][1]
+        'denominator' => coords[int][1][1]
       }
     }
   end

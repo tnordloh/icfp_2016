@@ -13,6 +13,7 @@ namespace :elm do
   task :compile do
     Dir.chdir("elm") do
       sh "elm-make ProblemVisualizer.elm --output ../javascripts/problemvisualizer.js"
+      sh "elm-make SolutionVisualizer.elm --output ../javascripts/solutionvisualizer.js"
     end
   end
 end
