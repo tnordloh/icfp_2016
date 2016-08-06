@@ -36,7 +36,8 @@ class Solver
           puts
           p response
         rescue RestClient::BadRequest
-          puts "skipping tricking problem"
+          puts
+          puts "Skipping tricking problem: ##{number}"
         end
       end
     end
