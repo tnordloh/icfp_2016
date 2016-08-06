@@ -27,11 +27,15 @@ class Point
     offset = self - around
 
     rotated = self.class.new(
-      (offset.x * c - offset.y * s).round(6),
-      (offset.x * s + offset.y * c).round(6)
+      offset.x * c - offset.y * s,
+      offset.x * s + offset.y * c
     )
 
-    rotated + around
+    (rotated + around).simplify(0.05)
+  end
+
+  def simplify(*args)
+    self.class.new(x.rationalize(*args), y.rationalize(*args))
   end
 
   def ==(other)
@@ -39,12 +43,12 @@ class Point
   end
 
   def to_s
-    "#{simplify x},#{simplify y}"
+    "#{unrationalize x},#{unrationalize y}"
   end
 
   private
 
-  def simplify(fraction)
+  def unrationalize(fraction)
     if fraction.denominator == 1
       fraction.numerator
     else
