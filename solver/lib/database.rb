@@ -1,10 +1,10 @@
-require "yaml/store"
+require "pstore"
 
 class Database
-  PROGRESS_FILE = File.join(__dir__, *%w[.. data progress.yaml])
+  PROGRESS_FILE = File.join(__dir__, *%w[.. data progress.pstore])
 
   def initialize
-    @db = YAML::Store.new(PROGRESS_FILE)
+    @db = PStore.new(PROGRESS_FILE)
   end
 
   attr_reader :db
