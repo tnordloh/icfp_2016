@@ -7755,89 +7755,94 @@ var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$a
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
 
-var _user$project$ProblemVisualizer$floatifyRational = function (rational) {
-	var _p0 = rational;
-	var numerator = _p0._0;
-	var denominator = _p0._1;
-	return _elm_lang$core$Basics$toFloat(numerator) / _elm_lang$core$Basics$toFloat(denominator);
+var _user$project$ProblemVisualizer$floatifyRational = function (_p0) {
+	var _p1 = _p0;
+	return _elm_lang$core$Basics$toFloat(_p1._0) / _elm_lang$core$Basics$toFloat(_p1._1);
 };
-var _user$project$ProblemVisualizer$rationalToString = F2(
-	function (scale, point) {
+var _user$project$ProblemVisualizer$rationalToString = F3(
+	function (scale, minx, point) {
 		return _elm_lang$core$Basics$toString(
-			scale(
+			A2(
+				scale,
+				minx,
 				_user$project$ProblemVisualizer$floatifyRational(point)));
 	});
-var _user$project$ProblemVisualizer$xscale = function (number) {
-	return number * 100;
-};
-var _user$project$ProblemVisualizer$yscale = function (number) {
-	return 200 - _user$project$ProblemVisualizer$xscale(number);
-};
-var _user$project$ProblemVisualizer$drawLine = function (coords) {
-	var _p1 = coords;
-	var coord1 = _p1._0;
-	var coord2 = _p1._1;
-	var _p2 = coord1;
-	var xs1 = _p2._0;
-	var ys1 = _p2._1;
-	var _p3 = coord2;
-	var xs2 = _p3._0;
-	var ys2 = _p3._1;
-	return A2(
-		_elm_lang$svg$Svg$line,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$svg$Svg_Attributes$x1(
-				A2(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$xscale, xs1)),
-				_elm_lang$svg$Svg_Attributes$y1(
-				A2(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$yscale, ys1)),
-				_elm_lang$svg$Svg_Attributes$x2(
-				A2(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$xscale, xs2)),
-				_elm_lang$svg$Svg_Attributes$y2(
-				A2(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$yscale, ys2)),
-				_elm_lang$svg$Svg_Attributes$stroke('black')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[]));
-};
-var _user$project$ProblemVisualizer$toCoord = function (point) {
-	var _p4 = point;
-	var x = _p4._0;
-	var y = _p4._1;
-	var _p5 = x;
-	var xn = _p5._0;
-	var xd = _p5._1;
-	var _p6 = y;
-	var yn = _p6._0;
-	var yd = _p6._1;
-	return A2(
-		_elm_lang$core$String$join,
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$xscale, x),
-				',',
-				A2(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$yscale, y)
-			]));
-};
-var _user$project$ProblemVisualizer$toSvgString = function (points) {
-	return A2(
-		_elm_lang$core$String$join,
-		' ',
-		A2(_elm_lang$core$List$map, _user$project$ProblemVisualizer$toCoord, points));
-};
-var _user$project$ProblemVisualizer$drawPolygon = function (polygon) {
-	return A2(
-		_elm_lang$svg$Svg$polygon,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$svg$Svg_Attributes$points(
-				_user$project$ProblemVisualizer$toSvgString(polygon.vertices)),
-				_elm_lang$svg$Svg_Attributes$fill('aquamarine')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[]));
-};
+var _user$project$ProblemVisualizer$yscale = F2(
+	function (miny, y) {
+		return (_elm_lang$core$Native_Utils.cmp(miny, 0) < 0) ? ((_elm_lang$core$Basics$negate(miny) + y) * 100) : (200 - (y * 100));
+	});
+var _user$project$ProblemVisualizer$xscale = F2(
+	function (minx, x) {
+		return (_elm_lang$core$Native_Utils.cmp(minx, 0) < 0) ? ((_elm_lang$core$Basics$negate(minx) + x) * 100) : (x * 100);
+	});
+var _user$project$ProblemVisualizer$drawLine = F2(
+	function (_p3, _p2) {
+		var _p4 = _p3;
+		var _p9 = _p4._1;
+		var _p8 = _p4._0;
+		var _p5 = _p2;
+		var _p6 = _p5._1;
+		var xs2 = _p6._0;
+		var ys2 = _p6._1;
+		var _p7 = _p5._0;
+		var xs1 = _p7._0;
+		var ys1 = _p7._1;
+		return A2(
+			_elm_lang$svg$Svg$line,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$svg$Svg_Attributes$x1(
+					A3(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$xscale, _p8, xs1)),
+					_elm_lang$svg$Svg_Attributes$y1(
+					A3(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$yscale, _p9, ys1)),
+					_elm_lang$svg$Svg_Attributes$x2(
+					A3(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$xscale, _p8, xs2)),
+					_elm_lang$svg$Svg_Attributes$y2(
+					A3(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$yscale, _p9, ys2)),
+					_elm_lang$svg$Svg_Attributes$stroke('black')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]));
+	});
+var _user$project$ProblemVisualizer$toCoord = F2(
+	function (_p11, _p10) {
+		var _p12 = _p11;
+		var _p13 = _p10;
+		return A2(
+			_elm_lang$core$String$join,
+			'',
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A3(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$xscale, _p12._0, _p13._0),
+					',',
+					A3(_user$project$ProblemVisualizer$rationalToString, _user$project$ProblemVisualizer$yscale, _p12._1, _p13._1)
+				]));
+	});
+var _user$project$ProblemVisualizer$toSvgString = F2(
+	function (points, minxy) {
+		return A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$map,
+				function (point) {
+					return A2(_user$project$ProblemVisualizer$toCoord, minxy, point);
+				},
+				points));
+	});
+var _user$project$ProblemVisualizer$drawPolygon = F2(
+	function (polygon, minxy) {
+		return A2(
+			_elm_lang$svg$Svg$polygon,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$svg$Svg_Attributes$points(
+					A2(_user$project$ProblemVisualizer$toSvgString, polygon.vertices, minxy)),
+					_elm_lang$svg$Svg_Attributes$fill('aquamarine')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]));
+	});
 var _user$project$ProblemVisualizer$update = F2(
 	function (message, model) {
 		return A2(
@@ -7846,7 +7851,45 @@ var _user$project$ProblemVisualizer$update = F2(
 			_elm_lang$core$Native_List.fromArray(
 				[]));
 	});
+var _user$project$ProblemVisualizer$convert = function (_p14) {
+	var _p15 = _p14;
+	return _elm_lang$core$Basics$toFloat(_p15._0) / _elm_lang$core$Basics$toFloat(_p15._1);
+};
+var _user$project$ProblemVisualizer$minCoords = function (polygons) {
+	var miny = _elm_lang$core$List$minimum(
+		A2(
+			_elm_lang$core$List$map,
+			_user$project$ProblemVisualizer$convert,
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Basics$snd,
+				A2(
+					_elm_lang$core$List$concatMap,
+					function (_) {
+						return _.vertices;
+					},
+					polygons))));
+	var minx = _elm_lang$core$List$minimum(
+		A2(
+			_elm_lang$core$List$map,
+			_user$project$ProblemVisualizer$convert,
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Basics$fst,
+				A2(
+					_elm_lang$core$List$concatMap,
+					function (_) {
+						return _.vertices;
+					},
+					polygons))));
+	return {
+		ctor: '_Tuple2',
+		_0: A2(_elm_lang$core$Maybe$withDefault, 0.0, minx),
+		_1: A2(_elm_lang$core$Maybe$withDefault, 0.0, miny)
+	};
+};
 var _user$project$ProblemVisualizer$view = function (model) {
+	var minxy = _user$project$ProblemVisualizer$minCoords(model.polygons);
 	return A2(
 		_elm_lang$svg$Svg$svg,
 		_elm_lang$core$Native_List.fromArray(
@@ -7858,8 +7901,18 @@ var _user$project$ProblemVisualizer$view = function (model) {
 			]),
 		A2(
 			_elm_lang$core$List$append,
-			A2(_elm_lang$core$List$map, _user$project$ProblemVisualizer$drawPolygon, model.polygons),
-			A2(_elm_lang$core$List$map, _user$project$ProblemVisualizer$drawLine, model.lines)));
+			A2(
+				_elm_lang$core$List$map,
+				function (poly) {
+					return A2(_user$project$ProblemVisualizer$drawPolygon, poly, minxy);
+				},
+				model.polygons),
+			A2(
+				_elm_lang$core$List$map,
+				function (line) {
+					return A2(_user$project$ProblemVisualizer$drawLine, minxy, line);
+				},
+				model.lines)));
 };
 var _user$project$ProblemVisualizer$init = function (model) {
 	return A2(
@@ -7873,7 +7926,7 @@ var _user$project$ProblemVisualizer$main = {
 		{
 			init: _user$project$ProblemVisualizer$init,
 			update: _user$project$ProblemVisualizer$update,
-			subscriptions: function (_p7) {
+			subscriptions: function (_p16) {
 				return _elm_lang$core$Platform_Sub$none;
 			},
 			view: _user$project$ProblemVisualizer$view

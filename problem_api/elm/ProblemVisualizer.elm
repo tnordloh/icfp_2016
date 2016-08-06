@@ -40,71 +40,83 @@ init model =
 
 
 view model =
-    Svg.svg [ width  (toString 200)
+    let
+      minxy = minCoords model.polygons
+    in
+      Svg.svg [ width  (toString 200)
             , height (toString 200)
             ]
-            (List.append (List.map drawPolygon model.polygons) (List.map drawLine model.lines))
+            (List.append (List.map (\poly -> drawPolygon poly minxy) model.polygons) (List.map (\line -> drawLine minxy line) model.lines))
+
+
+minCoords polygons =
+    let
+      minx = polygons |> List.concatMap .vertices |> List.map fst |> List.map convert |> List.minimum
+      miny = polygons |> List.concatMap .vertices |> List.map snd |> List.map convert |> List.minimum
+    in
+      (Maybe.withDefault 0.0 minx, Maybe.withDefault 0.0 miny)
+
+
+convert : Rational -> Float
+convert (n, d) =
+        (Basics.toFloat n) / (Basics.toFloat d)
 
 
 update : Cmd -> Model -> (Model, Cmd msg)
 update message model = model ! []
 
 
-drawPolygon : Polygon -> Svg a
-drawPolygon polygon =
-    Svg.polygon [ points (toSvgString polygon.vertices), fill "aquamarine" ] [ ]
+drawPolygon : Polygon -> (Float, Float) -> Svg a
+drawPolygon polygon minxy =
+    Svg.polygon [ points (toSvgString polygon.vertices minxy), fill "aquamarine" ] [ ]
 
 
-toSvgString : List Point -> String
-toSvgString points =
-    points |> List.map toCoord |> String.join " "
+toSvgString : List Point -> (Float, Float) -> String
+toSvgString points minxy =
+    points |> List.map (\point -> toCoord minxy point) |> String.join " "
 
 
-toCoord : Point -> String
-toCoord point =
-    let
-      (x, y)   = point
-      (xn, xd) = x
-      (yn, yd) = y
-    in
-      String.join "" [ rationalToString xscale x
+toCoord : (Float, Float) -> Point -> String
+toCoord (minx, miny) (x, y) =
+      String.join "" [ rationalToString xscale minx x
                      , ","
-                     , rationalToString yscale y
+                     , rationalToString yscale miny y
                      ]
 
-
-xscale : Float -> Float
-xscale number =
-    number * 100
-
-
-yscale : Float -> Float
-yscale number =
-    200 - (xscale number)
+xscale : Float -> Float -> Float
+xscale minx x =
+    if minx < 0 then
+        ((negate minx) + x) * 100
+    else
+        x * 100
 
 
-drawLine : (Point, Point) -> Svg a
-drawLine coords =
+yscale : Float -> Float -> Float
+yscale miny y =
+    if miny < 0 then
+        ((negate miny) + y) * 100
+    else
+        200 - (y * 100)
+
+
+drawLine : (Float, Float) -> (Point, Point) -> Svg a
+drawLine (minx, miny) (coord1, coord2) =
     let
-      (coord1, coord2) = coords
       (xs1, ys1) = coord1
       (xs2, ys2) = coord2
     in
-      Svg.line [ x1 (rationalToString xscale xs1)
-               , y1 (rationalToString yscale ys1)
-               , x2 (rationalToString xscale xs2)
-               , y2 (rationalToString yscale ys2)
+      Svg.line [ x1 (rationalToString xscale minx xs1)
+               , y1 (rationalToString yscale miny ys1)
+               , x2 (rationalToString xscale minx xs2)
+               , y2 (rationalToString yscale miny ys2)
                , stroke "black" ] []
 
 
-rationalToString : (Float -> Float) -> Rational -> String
-rationalToString scale point =
-    point |> floatifyRational |> scale |> toString
+rationalToString : (Float -> Float -> Float) -> Float -> Rational -> String
+rationalToString scale minx point =
+    point |> floatifyRational |> scale minx |> toString
 
 
 floatifyRational : Rational -> Float
-floatifyRational rational =
-    let
-      (numerator, denominator) = rational
-    in
+floatifyRational (numerator, denominator) =
       (Basics.toFloat numerator / Basics.toFloat denominator)

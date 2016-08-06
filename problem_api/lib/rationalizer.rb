@@ -10,7 +10,7 @@ class Rationalizer
   end
 
   def rational?(num_string = @candidate)
-    num_string.match(/\A[0-9]+\/[0-9]+\z/)
+    num_string.match(/\A-?[0-9]+\/[0-9]+\z/)
   end
 
   def format(num_string)
