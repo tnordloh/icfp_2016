@@ -45,7 +45,7 @@ class ProblemAPI
   end
 
   def problems
-    response = snapshot["problems"]
+    snapshot["problems"].reject { |problem| problem["owner"] == "62" }
   end
 
   def problem_spec(hash)
