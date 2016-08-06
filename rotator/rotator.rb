@@ -1,31 +1,7 @@
-class Rotator
-  def self.rotate(cx, cy, angle, point)
-    rad_angle = angle * Math::PI / 180
-    s = Math.sin(rad_angle).to_r
-    c = Math.cos(rad_angle).to_r
+require_relative "../solver/lib/point"
 
-    #translate point back to origin
-    point.x -= cx.to_r
-    point.y -= cy.to_r
+abort "USAGE:  #{$PROGRAM_NAME} AROUND_X AROUND_Y DEGREES X Y" \
+  unless ARGV.size == 5 && ARGV.all? { |n| n =~ /\A\d+/ }
+around_x, around_y, angle, x, y = ARGV.map(&:to_f)
 
-    # rotate point
-    xnew = (point.x * c - point.y * s)
-    ynew = (point.x * s + point.y * c)
-
-    # translate back
-    point.x = (xnew + cx.to_r).to_r
-    point.y = (ynew + cy.to_r).to_r
-
-    puts "#{point.x},#{point.y}"
-  end
-end
-
-Point = Struct.new(:x, :y)
-cx = ARGV.shift.to_r
-cy = ARGV.shift.to_r
-angle = ARGV.shift.to_r
-p = Point.new
-p.x = ARGV.shift.to_r
-p.y = ARGV.shift.to_r
-
-Rotator.rotate(cx, cy, angle, p)
+puts Point([x, y]).rotate(angle, around: Point([around_x, around_y]))

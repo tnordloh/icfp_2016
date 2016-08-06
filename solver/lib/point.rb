@@ -18,6 +18,22 @@ class Point
     Point.new(x / n, y / n)
   end
 
+  def rotate(degrees, around: Point([0, 0]))
+    radians = degrees * Math::PI / 180
+
+    s = Math.sin(radians)
+    c = Math.cos(radians)
+
+    offset = self - around
+
+    rotated = self.class.new(
+      (offset.x * c - offset.y * s).round(6),
+      (offset.x * s + offset.y * c).round(6)
+    )
+
+    rotated + around
+  end
+
   def ==(other)
     self.class == other.class && x == other.x && y == other.y
   end
