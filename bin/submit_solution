@@ -11,8 +11,8 @@ db = Database.new
 
 begin
    response = api.submit_solution(file)
+   db.record_if_better(response["problem_id"], response)
 rescue RestClient::BadRequest => error
   puts "Error:  #{JSON.parse(error.response.body)["error"]}"
 end
-db.record_if_better(response["problem_id"], response)
 p response
