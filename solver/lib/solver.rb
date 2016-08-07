@@ -25,7 +25,7 @@ class Solver
     files.sort_by { |path|
       last_modified = File.mtime(path)
       number = File.basename(path, ".txt").to_i
-      [mtime, scores[number] || 0]
+      [last_modified, scores[number] || 0]
     }.each do |path|
       number = File.basename(path, ".txt").to_i
 
