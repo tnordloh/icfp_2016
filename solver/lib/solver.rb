@@ -40,7 +40,10 @@ class Solver
       problem = Problem.new(number, path)
       solution = problem.solve
 
-      if solution && under_size_limit?(solution)
+      if solution && !under_size_limit?(solution)
+        puts
+        puts "Solution too large:  #{number}"
+      elsif solution
         begin
           puts
           puts "Previous score:  #{old_score}"
