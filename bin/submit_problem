@@ -7,5 +7,11 @@ p file
 
 api = ProblemAPI.new
 
-response = api.submit_problem(file)
+begin
+  response = api.submit_problem(file)
+rescue RestClient::BadRequest => error
+  puts "Error:  #{JSON.parse(error.response.body)["error"]}"
+  puts "Skipping tricky problem: ##{number}"
+end
+
 p response
