@@ -23,7 +23,7 @@ class MagicShrinkingPaper
   end
 
   def center(point)
-    @centroid = point
+    @centroid = point - Point([width.to_r / 2, height.to_r / 2])
   end
 
   def horizontal_folds
