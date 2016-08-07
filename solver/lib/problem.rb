@@ -1,4 +1,6 @@
+require_relative "bounding_box"
 require_relative "figure"
+require_relative "magic_shrinking_paper"
 require_relative "polygon"
 require_relative "solution"
 
@@ -14,10 +16,13 @@ class Problem
   private     :number, :polygons
 
   def solve
-    paper = Polygon.new([[0, 0], [1, 0], [1, 1], [0, 1]])
-    figure = Figure.new(polygons.select(&:counter_clockwise?))
-    solution = paper.overlay(figure)
-    Solution.new(number, paper, solution).write
+    paper = MagicShrinkingPaper.new
+    box = BoundingBox.new(
+      polygons.select(&:counter_clockwise?).flat_map(&:vertices)
+    )
+    paper.shrink(width: box.width, height: box.height)
+    paper.center(box.centroid)
+    Solution.new(number, paper).write
   end
 
   private

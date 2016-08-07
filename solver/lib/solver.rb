@@ -24,21 +24,24 @@ class Solver
     files.each do |path|
       number = File.basename(path, ".txt").to_i
 
-      next if db.best_score(number) == 1.0
-      next if db.best_score(number) != 0.0 and zeroes_only
+      old_score = db.best_score(number)
+      next if old_score == 1.0
+      next if old_score != 0.0 && zeroes_only
 
       problem = Problem.new(number, path)
       solution = problem.solve
 
       if solution
         begin
+          puts
+          puts "Previous score:  #{old_score}"
+
           response = api.submit_solution(solution)
           db.record_if_better(number, response)
 
-          puts
           p response
-        rescue RestClient::BadRequest
-          puts
+        rescue RestClient::BadRequest => error
+          puts "Error:  #{JSON.parse(error.response.body)["error"]}"
           puts "Skipping tricky problem: ##{number}"
         end
       end
