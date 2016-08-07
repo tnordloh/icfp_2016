@@ -20,7 +20,7 @@ class Problem
     box = BoundingBox.new(
       polygons.select(&:counter_clockwise?).flat_map(&:vertices)
     )
-    paper.shrink(width: box.width, height: box.height)
+    paper.shrink(width: [box.width, 1].min, height: [box.height, 1].min)
     paper.center(box.centroid)
     Solution.new(number, paper).write
   end

@@ -69,7 +69,7 @@ class MagicShrinkingPaper
       begin
         xs = [0, 1]
         horizontal_fold_lines.reverse_each do |fold|
-          if fold == 1/2r
+          if xs.size == 2
             xs = [0, fold, 1]
           else
             distance = xs[1] - fold
@@ -80,7 +80,7 @@ class MagicShrinkingPaper
         end
         ys = [0, 1]
         vertical_fold_lines.reverse_each do |fold|
-          if fold == 1/2r
+          if ys.size == 2
             ys = [0, fold, 1]
           else
             distance = ys[1] - fold
