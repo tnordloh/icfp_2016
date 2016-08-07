@@ -64,6 +64,19 @@ class MagicShrinkingPaper
       end
   end
 
+  def reduce_size
+    if to_s.count("^ \n\t") > 5_000
+      biggest_fold = [:horizontal_folds, :vertical_folds].max_by { |f| send(f) }
+      if send(biggest_fold) >= 1
+        instance_variable_set("@#{biggest_fold}", send(biggest_fold) - 1)
+        @horizontal_fold_lines = nil
+        @vertical_fold_lines = nil
+        @vertices = nil
+        reduce_size
+      end
+    end
+  end
+
   def vertices
     @vertices ||=
       begin

@@ -19,8 +19,11 @@ class Problem
     box = BoundingBox.new(
       polygons.select(&:counter_clockwise?).flat_map(&:vertices)
     )
-    paper.shrink(width: [box.width, 1].min, height: [box.height, 1].min)
+    paper.shrink(p width: [box.width, 1].min, height: [box.height, 1].min)
+    p paper.horizontal_folds
+    p paper.vertical_folds
     paper.center(box.centroid)
+    paper.reduce_size
     Solution.new(number, paper).write
   end
 
