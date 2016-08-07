@@ -35,7 +35,7 @@ class Solver
       problem = Problem.new(number, path)
       solution = problem.solve
 
-      if solution
+      if solution && under_size_limit?(solution)
         begin
           puts
           puts "Previous score:  #{old_score}"
@@ -50,5 +50,9 @@ class Solver
         end
       end
     end
+  end
+
+  def under_size_limit?(path)
+    File.read(path).count("^ \n\t") <= 5_000
   end
 end
