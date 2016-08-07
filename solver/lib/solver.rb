@@ -21,12 +21,16 @@ class Solver
   private     :files, :api, :db, :zeroes_only
 
   def solve
-    files.each do |path|
+    scores = db.scores
+    files.sort_by { |path|
+      number = File.basename(path, ".txt").to_i
+      scores[number] || 0
+    }.each do |path|
       number = File.basename(path, ".txt").to_i
 
-      old_score = db.best_score(number)
+      old_score = scores[number] || 0
       next if old_score == 1.0
-      next if old_score != 0.0 && zeroes_only
+      next if old_score != 0 && zeroes_only
 
       problem = Problem.new(number, path)
       solution = problem.solve

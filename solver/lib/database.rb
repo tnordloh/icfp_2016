@@ -16,6 +16,12 @@ class Database
     }
   end
 
+  def scores
+    db.transaction(true) {
+      Hash[db.roots.map { |number| [number, db[number]["resemblance"]] }]
+    }
+  end
+
   def record_if_better(number, result)
     db.transaction do
       old_score = db.root?(number) ? db[number]["resemblance"] : 0
