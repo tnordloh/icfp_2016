@@ -23,9 +23,8 @@ class Solver
   def solve
     scores = db.scores
     files.sort_by { |path|
-      last_modified = File.mtime(path)
       number = File.basename(path, ".txt").to_i
-      [last_modified, scores[number] || 0]
+      scores[number] || 0
     }.each do |path|
       number = File.basename(path, ".txt").to_i
 
