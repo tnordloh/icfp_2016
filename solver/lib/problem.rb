@@ -1,5 +1,4 @@
 require_relative "bounding_box"
-require_relative "figure"
 require_relative "magic_shrinking_paper"
 require_relative "polygon"
 require_relative "solution"
