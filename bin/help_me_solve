@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+#
+require_relative '../lib/problem_helper'
+
+helper = ProblemHelper.new
+
+puts "enter extra points"
+while (x = gets.strip) != "done"
+  values = x.split(',').map {|v| v.to_r}
+  helper.add_vertex(values)
+end
+
+puts "enter vertices"
+
+while (x = gets.strip) != "done"
+  helper.add_polygon(x)
+end
+puts "output"
+puts helper.to_s
+puts "output done"
