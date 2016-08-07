@@ -109,21 +109,24 @@ def optimize_bounding_box(polygons):
         if ta < min_area and res.success:
             min_area = ta
             min_angle = -x
-    return round(min_angle, 2), rotated_bb(polygon, center, min_angle)
+    polygon_rotated_bb = rotated_bb(polygon, center, -min_angle)
+    #now rotate this bb back by min_angle
+    actual_bb = [rotate_point(p, center, min_angle) for p in polygon_rotated_bb]
+    return round(min_angle, 2), actual_bb, center
 
 if __name__ == '__main__':
     import sys
     problem_file = sys.argv[1]
     polygs = parse_silohette(problem_file)
-    min_angle, bb = optimize_bounding_box(polygs)
+    min_angle, bb, center = optimize_bounding_box(polygs)
     print 'angle =',min_angle
     for i,p in enumerate(bb):
         print 'point%d ='%i,p
     lengths = bb_lengths(bb)
     width = bb[0].distance(bb[1])
     length = bb[1].distance(bb[2])
-    print 'width =', width
-    print 'length =',length
-    
+    print 'width =', Fraction(width)
+    print 'length =',Fraction(length)
+    print 'center =', center
     
         
