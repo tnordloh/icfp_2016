@@ -60,90 +60,17 @@ describe MagicShrinkingPaper do
     )
   end
 
-  # it "makes facets out of the vertices" do
-  #   paper.shrink(width: 3/4r, height: 1/16r)
+  it "makes vertices for the fold with a single fold" do
+    paper.shrink(width: 5/7r, height: 5/7r)
 
-  #   paper.facets.must_equal([
-  #     [0, 1, 4, 3],
-  #     [1, 2, 5, 4],
-  #     [3, 4, 7, 6],
-  #     [4, 5, 8, 7],
-  #     [6, 7, 10, 9],
-  #     [7, 8, 11, 10],
-  #     [9, 10, 13, 12],
-  #     [10, 11, 14, 13],
-  #     [12, 13, 16, 15],
-  #     [13, 14, 17, 16]
-  #   ])
-  # end
-
-  # it "determines the destination points" do
-  #   paper.shrink(width: 3/4r, height: 1/16r)
-
-  #   paper.destinations.must_equal(
-  #     [ [[0, 0],     [3/4r, 0],     [1/2r, 0]],
-  #       [[0, 0],     [3/4r, 0],     [1/2r, 0]],
-  #       [[0, 0],     [3/4r, 0],     [1/2r, 0]],
-  #       [[0, 0],     [3/4r, 0],     [1/2r, 0]],
-  #       [[0, 1/16r], [3/4r, 1/16r], [1/2r, 1/16r]],
-  #       [[0, 0],     [3/4r, 0],     [1/2r, 0]] ]
-  #       .map { |row| row.map { |vertex| Point(vertex) } }
-  #   )
-  # end
-
-  # it "stringifies the paper" do
-  #   paper.shrink(width: 3/4r, height: 1/16r)
-  #   paper.to_s.must_equal(<<-END_SOLUTION.gsub(/^\s+/, ""))
-  #   18
-  #   0,1
-  #   3/4,1
-  #   1,1
-  #   0,1/2
-  #   3/4,1/2
-  #   1,1/2
-  #   0,1/4
-  #   3/4,1/4
-  #   1,1/4
-  #   0,1/8
-  #   3/4,1/8
-  #   1,1/8
-  #   0,1/16
-  #   3/4,1/16
-  #   1,1/16
-  #   0,0
-  #   3/4,0
-  #   1,0
-  #   10
-  #   4 0 1 4 3
-  #   4 1 2 5 4
-  #   4 3 4 7 6
-  #   4 4 5 8 7
-  #   4 6 7 10 9
-  #   4 7 8 11 10
-  #   4 9 10 13 12
-  #   4 10 11 14 13
-  #   4 12 13 16 15
-  #   4 13 14 17 16
-  #   0,0
-  #   3/4,0
-  #   1/2,0
-  #   0,0
-  #   3/4,0
-  #   1/2,0
-  #   0,0
-  #   3/4,0
-  #   1/2,0
-  #   0,0
-  #   3/4,0
-  #   1/2,0
-  #   0,1/16
-  #   3/4,1/16
-  #   1/2,1/16
-  #   0,0
-  #   3/4,0
-  #   1/2,0
-  #   END_SOLUTION
-  # end
+    paper.vertices.must_equal(
+      [
+        [[0, 1],    [5/7r, 1],    [1, 1]],
+        [[0, 5/7r], [5/7r, 5/7r], [1, 5/7r]],
+        [[0, 0],    [5/7r, 0],    [1, 0]]
+      ].map { |row| row.map { |vertex| Point(vertex) } }
+    )
+  end
 
   it "solves problem 26" do
     paper.shrink(width: 3/8r, height: 3/8r)
